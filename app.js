@@ -2,6 +2,8 @@
 
 const amigos = [];
 
+// === ADIÇÃO DE AMIGOS ===
+
 /**
  * @description Adiciona um nome à lista de amigos
  */
@@ -11,6 +13,7 @@ function adicionarAmigo() {
 	if (validarNome(nome)) {
 		amigos.push(nome);
 		clearInputNomeDoAmigo();
+		atualizarListaDeAmigos();
 	} else {
 		alert('Por favor, insira um nome.');
 	}
@@ -39,4 +42,40 @@ function clearInputNomeDoAmigo() {
  */
 function validarNome(nome) {
 	return nome.trim() !== '';
+}
+
+// === ATUALIZAÇÃO DA LISTA DE AMIGOS ===
+
+/**
+ * @description Atualiza a lista de amigos
+ */
+function atualizarListaDeAmigos() {
+	clearListaDeAmigos();
+	amigos.forEach(adicionarAmigoNaLista);
+}
+
+/**
+ * @description Recupera a lista de amigos
+ * @returns {HTMLElement} - A lista de amigos
+ */
+function getListaDeAmigos() {
+	return document.getElementById('listaAmigos');
+}
+
+/**
+ * @description Limpa a lista de amigos
+ */
+function clearListaDeAmigos() {
+	getListaDeAmigos().innerHTML = '';
+}
+
+/**
+ * @description Adiciona um nome à lista de amigos
+ * @param {string} nome - O nome do amigo a ser adicionado
+ */
+function adicionarAmigoNaLista(nome) {
+	const lista = getListaDeAmigos();
+	const li = document.createElement('li');
+	li.textContent = nome;
+	lista.appendChild(li);
 }
