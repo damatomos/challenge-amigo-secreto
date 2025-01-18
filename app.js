@@ -79,3 +79,60 @@ function adicionarAmigoNaLista(nome) {
 	li.textContent = nome;
 	lista.appendChild(li);
 }
+
+// === SORTEIO DE AMIGOS ===
+
+/**
+ * @description Sorteia um amigo
+ */
+function sortearAmigo() {
+	if (validarListaDeAmigos()) {
+		let posicaoSorteada = gerarPosicaoAleatoria();
+		let nomeSorteado = getNomeSorteado(posicaoSorteada);
+		atualizarResultado(nomeSorteado);
+	} else {
+		alert('Por favor, adicione pelo menos dois amigos.');
+	}
+}
+
+/**
+ * @description Valida se a lista de amigos é válida
+ * @returns {boolean} - true se a lista de amigos é válida, false caso contrário
+ */
+function validarListaDeAmigos() {
+	return amigos.length > 1;
+}
+
+/**
+ * @description Gera uma posição aleatória baseada na quantidade de amigos
+ * @returns {number} - A posição aleatória
+ */
+function gerarPosicaoAleatoria() {
+	return Math.floor(Math.random() * amigos.length);
+}
+
+/**
+ * @description Recupera o nome sorteado baseado na posição sorteada
+ * @param {number} posicaoSorteada - A posição sorteada
+ * @returns {string} - O nome sorteado
+ */
+function getNomeSorteado(posicaoSorteada) {
+	return amigos[posicaoSorteada];
+}
+
+/**
+ * @description Recupera o elemento de resultado
+ * @returns {HTMLElement} - O elemento de resultado
+ */
+function getElementoDeResultado() {
+	return document.getElementById('resultado');
+}
+
+/**
+ * @description Atualiza o resultado
+ * @param {string} nomeSorteado - O nome sorteado
+ */
+function atualizarResultado(nomeSorteado) {
+	const resultado = getElementoDeResultado();
+	resultado.innerHTML = `O amigo sorteado é: ${nomeSorteado}`;
+}
