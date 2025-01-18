@@ -15,7 +15,8 @@ function adicionarAmigo() {
 		clearInputNomeDoAmigo();
 		atualizarListaDeAmigos();
 	} else {
-		alert('Por favor, insira um nome.');
+		clearInputNomeDoAmigo();
+		alert('Por favor, insira um nome válido (não pode ser um nome já adicionado).');
 	}
 }
 
@@ -41,7 +42,7 @@ function clearInputNomeDoAmigo() {
  * @returns {boolean} - true se o nome é válido, false caso contrário
  */
 function validarNome(nome) {
-	return nome.trim() !== '';
+	return nome.trim() !== '' && !amigos.includes(nome);
 }
 
 // === ATUALIZAÇÃO DA LISTA DE AMIGOS ===
